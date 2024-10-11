@@ -1,0 +1,56 @@
+name: Robot Framework tests
+
+on: push
+
+jobs:
+    test:
+        name: Testes Back-end
+        runs-on: ubuntu-latest
+
+        permissions:
+          contents: read
+          pages: write
+          id-token: write
+        environment:
+          name: github-pages
+          url: https://emanuellemariz.github.io/suits-robot-back-end/report.html
+
+        steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v2
+
+        - name: Set up Python 3.12.1
+          uses: actions/setup-python@v3
+          with:
+            python-version: 3.12.1
+
+        - name: Install dependencies
+          run: |
+            python -m pip install --upgrade pip
+            pip install robotframework
+            pip install robotframework-requests
+            pip install robotframework-jsonlibrary
+
+        - name: Run Robot Framework Tests
+          run: |
+            robot -d results tests
+          
+        - name: Salvar resultados dos testes
+          if: ${{ always() }}
+          uses: actions/upload-artifact@v3
+          with:
+            name: robot-results
+            path: ./results
+
+        - name: Setup Pages
+          uses: actions/configure-pages/@v2
+
+        - name: Upload Artifact
+          uses: actions/upload-pages-artifact@v1
+          with:
+            path: results/
+
+        - name: Deploy to Github Pages
+          id: deployment
+          uses: actions/deploy-pages@v1
+    
