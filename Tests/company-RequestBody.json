@@ -1,0 +1,21 @@
+{
+    "corporateName": "Companhia do Delete3",
+    "registerCompany": "12128256040248",
+    "mail": "test11@test.com",
+    "matriz": "Teste",
+    "responsibleContact": "Marcio",
+    "telephone": "99999999999999",
+    "serviceDescription": "Testes",
+    "address": [
+      {
+        "zipCode": "04777001",
+        "city": "São Paulo",
+        "state": "SP",
+        "district": "Rua das Flores",
+        "street": "Avenida Interlagos",
+        "number": "50",
+        "complement": "de 4503 ao fim - lado ímpar",
+        "country": "Brasil"
+      }
+    ]
+  }
